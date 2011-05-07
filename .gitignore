@@ -1,0 +1,9 @@
+Makefile
+build/**
+moc_mainwindow.cpp
+moc_newworld.cpp
+moc_qworld.cpp
+moc_widgets.cpp
+qrc_floatworld.cpp
+ui_mainwindow.h
+ui_newworld.h

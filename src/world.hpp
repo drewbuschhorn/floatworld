@@ -67,9 +67,15 @@ std::istream& operator>>(std::istream& i, Occupant*& o);
 #include "creat.hpp"
 
 class World : public Object
-{
+{	
+protected:
+	//Singleton instance 
+	static World* _instance;
+
 public:      
-    
+	//Singleton getter
+	static World* Instance();
+
     QLinkedList<Occupant*> occupant_list;
     QLinkedList<Creat*> graveyard;
 
@@ -119,6 +125,7 @@ public:
     void SetSize(int rws, int cls);
 
     // Low-level position
+    int getTimestep();
     inline Pos Wrap(Pos pos) { return pos.Wrap(rows, cols); }
     Pos RandomCell();
     Pos EmptyCell();

@@ -128,6 +128,20 @@ World::World()
     jump_range = 0;
 
     SetupActions();
+	_instance = this;
+}
+
+int World::getTimestep(){
+	return timestep;
+}
+
+World* World::_instance =0;
+World* World::Instance()
+{
+  if(_instance==0){
+	throw;	
+  }
+	return _instance;
 }
 
 World::~World()

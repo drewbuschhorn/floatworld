@@ -13,7 +13,7 @@
 #include <pion/net/WebServer.hpp>
 #include "ShutdownManager.hpp"
 
-#include "../src/HelloService.hpp"
+#include "../src/data_services/HelloService.hpp"
 //End HelloServer Includes
 
 #include <sstream>
@@ -51,10 +51,9 @@ void func(){
 		}
 
 		pion::net::WebService* service = new pion::plugins::HelloService(); 
-		web_server.addService("/hello", service);
+		web_server.addService("/", service);
 		web_server.start();
 		main_shutdown_manager.wait();
-		delete service;
 	} catch (std::exception& e) {
 		//PION_LOG_FATAL(main_log, e.what());
 		cout << e.what() << endl;
@@ -82,5 +81,3 @@ int main(int argc, char *argv[])
 
     return result;
 }
-
-

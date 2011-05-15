@@ -12,6 +12,7 @@
 
 #include <pion/net/WebService.hpp>
 #include "../world.hpp"
+#include "../../gui/mainwindow.hpp"
 
 namespace pion {		// begin namespace pion
 namespace plugins {		// begin namespace plugins

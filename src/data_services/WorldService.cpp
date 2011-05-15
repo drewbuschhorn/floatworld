@@ -10,6 +10,7 @@
 #include <iostream>
 #include <pion/net/HTTPResponseWriter.hpp>
 #include "../world.hpp"
+#include "../../gui/mainwindow.hpp"
 #include "WorldService.hpp"
 
 using namespace pion;
@@ -24,13 +25,14 @@ namespace plugins {		// begin namespace plugins
 /// handles requests for WorldService
 void WorldService::operator()(HTTPRequestPtr& request, TCPConnectionPtr& tcp_conn)
 {
-		World* world = World::Instance();
+		MainWindow* _mainwindow = MainWindow::Instance();
+		World* _world = World::Instance();
+
 		std::ostringstream out; 
 		out << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 		out << "<world>\n";
-		out << "<timestamp>"<< world->timestep <<"</timestamp>\n";
-		std::cout << world->timestep << std::endl;
-		out << "<matrix>"<< *world <<"</matrix>\n";
+		out << "<timestamp>"<< _world->timestep <<"</timestamp>\n";
+		out << "<matrix>"<< *_world <<"</matrix>\n";
 		out << "</world>";
 
 		HTTPResponseWriterPtr writer(HTTPResponseWriter::create(tcp_conn, *request,

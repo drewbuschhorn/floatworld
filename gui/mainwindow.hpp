@@ -21,7 +21,14 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 {
     Q_OBJECT
 
-public:
+protected:
+    //Singleton instance 
+    static MainWindow* _instance;
+
+public:      
+    //Singleton getter
+    static MainWindow* Instance();
+
     Matrix adam;
     QElapsedTimer timer;
     QTimer ticker;
@@ -39,6 +46,7 @@ public:
 
     MainWindow();
     void SetSpeed(float speed);
+    void Stop(); // SetSpeed(0)
 
     void showEvent(QShowEvent *);
 
@@ -56,7 +64,6 @@ private slots:
 
     void ff_pressed();
     void ff_released();
-    void Stop(); // SetSpeed(0)
 
     void on_actionNew_triggered();
     void on_actionRestart_triggered();

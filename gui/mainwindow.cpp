@@ -92,6 +92,17 @@ MainWindow::MainWindow()
     connect(comboNewObjectClass, SIGNAL(activated(QString)), this, SLOT(ObjectSelected(QString)));
     connect(qworld, SIGNAL(CellClicked(Pos)), this, SLOT(CreateObjectAt(Pos)));
     update();
+
+    _instance = this;
+}
+
+MainWindow* MainWindow::_instance =0;
+MainWindow* MainWindow::Instance()
+{
+  if(_instance==0){
+	throw;	
+  }
+	return _instance;	
 }
 
 void MainWindow::showEvent(QShowEvent *)

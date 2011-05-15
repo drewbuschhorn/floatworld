@@ -22,10 +22,16 @@ namespace plugins {		// begin namespace plugins
 /// handles requests for HelloService
 void HelloService::operator()(HTTPRequestPtr& request, TCPConnectionPtr& tcp_conn)
 {
-	static const std::string HELLO_HTML = "<html><body>Hello World!</body></html>";
+	std::ostringstream hello_html;
+	hello_html << "<html><body><h1>Response Code:"
+		<< HTTPTypes::RESPONSE_CODE_NOT_FOUND << ":" 
+		<< HTTPTypes::RESPONSE_MESSAGE_NOT_FOUND
+		<< "</h1><hr/><div>Floatworld Server is running, but this route is not configured.</div></body></html>";
 	HTTPResponseWriterPtr writer(HTTPResponseWriter::create(tcp_conn, *request,
 															boost::bind(&TCPConnection::finish, tcp_conn)));
-	writer->writeNoCopy(HELLO_HTML);
+	writer->write(hello_html.str());
+	writer->getResponse().setStatusCode(HTTPTypes::RESPONSE_CODE_NOT_FOUND);
+	writer->getResponse().setStatusMessage(HTTPTypes::RESPONSE_MESSAGE_NOT_FOUND);
 	writer->writeNoCopy(HTTPTypes::STRING_CRLF);
 	writer->writeNoCopy(HTTPTypes::STRING_CRLF);
 	writer->send();

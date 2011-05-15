@@ -14,6 +14,7 @@
 #include "ShutdownManager.hpp"
 
 #include "../src/data_services/HelloService.hpp"
+#include "../src/data_services/WorldService.hpp"
 //End HelloServer Includes
 
 #include <sstream>
@@ -50,8 +51,13 @@ void func(){
 		//		<< PION_PLUGINS_DIRECTORY;
 		}
 
-		pion::net::WebService* service = new pion::plugins::HelloService(); 
-		web_server.addService("/", service);
+
+		pion::net::WebService* hello_service = new pion::plugins::HelloService(); 
+		web_server.addService("/", hello_service);
+
+		pion::net::WebService* world_service = new pion::plugins::WorldService(); 
+		web_server.addService("/world", world_service);
+
 		web_server.start();
 		main_shutdown_manager.wait();
 	} catch (std::exception& e) {

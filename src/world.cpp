@@ -1,5 +1,8 @@
 #include "world.hpp"
 #include "creat.hpp"
+#include <string>
+#include <iostream>
+#include <sstream>
 #include <fstream>
 #include <assert.h>
 
@@ -129,6 +132,7 @@ World::World()
 
     SetupActions();
 	_instance = this;
+	_lastStep = "";	
 }
 
 int World::getTimestep(){
@@ -585,6 +589,10 @@ void World::Step()
     if (energy_decay_rate != 0.0) energy *= (1.0 - energy_decay_rate);
 
     timestep++;
+
+    ostringstream output;
+    output << *this;
+    _lastStep = output.str(); 
 }
 
 float CompeteFunction(int numa, int numb)

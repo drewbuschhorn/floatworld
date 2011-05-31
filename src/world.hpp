@@ -7,6 +7,8 @@
 
 #include <iostream>
 #include <list>
+#include <string>
+#include <sstream>
 
 enum InteractionMode
 {
@@ -71,10 +73,10 @@ class World : public Object
 protected:
 	//Singleton instance 
 	static World* _instance;
-
 public:      
 	//Singleton getter
 	static World* Instance();
+	std::string _lastStep;
 
     QLinkedList<Occupant*> occupant_list;
     QLinkedList<Creat*> graveyard;

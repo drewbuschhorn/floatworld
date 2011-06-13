@@ -32,7 +32,7 @@ void WorldService::operator()(HTTPRequestPtr& request, TCPConnectionPtr& tcp_con
 		out << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 		out << "<world>\n";
 		out << "<timestamp>"<< _world->timestep <<"</timestamp>\n";
-		out << "<matrix>"<< _world->_lastStep <<"</matrix>\n";
+		out << "<matrix>"<< *_world <<"</matrix>\n";
 		out << "</world>";
 
 		HTTPResponseWriterPtr writer(HTTPResponseWriter::create(tcp_conn, *request,

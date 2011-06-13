@@ -14,6 +14,7 @@
 #include "ShutdownManager.hpp"
 
 #include "../src/data_services/HelloService.hpp"
+#include "../src/data_services/TimeStamp.hpp"
 #include "../src/data_services/WorldService.hpp"
 //End HelloServer Includes
 

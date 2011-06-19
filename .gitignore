@@ -7,3 +7,5 @@ moc_widgets.cpp
 qrc_floatworld.cpp
 ui_mainwindow.h
 ui_newworld.h
+.cproject
+.project

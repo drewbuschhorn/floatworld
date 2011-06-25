@@ -67,6 +67,10 @@ QWorld::QWorld(QWidget* parent) :
 
 void QWorld::SetSize(int rows, int cols)
 {
+	//Disable unused var: rows
+	(void)rows;
+
+
     if (cols < 100) grid->scale = 12;
     //world->SetSize(rows, cols);
     //setMaximumSize(sizeHint());
@@ -442,6 +446,9 @@ void QWorld::SetDrawFraction(float frac)
 
 QRgb BlackColorFunc(float value)
 {
+	//Disable unused var: value
+	(void)value;
+
     return qRgb(0,0,0);
 }
 

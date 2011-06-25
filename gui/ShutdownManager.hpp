@@ -73,6 +73,9 @@ BOOL WINAPI console_ctrl_handler(DWORD ctrl_type)
 #else
 void handle_signal(int sig)
 {
+	//Disable unused var: sig
+	(void)sig;
+
 	main_shutdown_manager.shutdown();
 }
 #endif

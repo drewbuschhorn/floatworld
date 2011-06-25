@@ -257,6 +257,9 @@ RNGWidget::RNGWidget() : Binding(SIGNAL(Randomized()))
 
 void RNGWidget::mousePressEvent(QMouseEvent *ev)
 {
+	//Disable unused var: ev
+	(void)ev;
+
     RNG* rng = static_cast<RNG*>(ptr);
     rng->_w = (random() % 234523451);
     rng->_z = (random() % 234523451);
@@ -265,6 +268,9 @@ void RNGWidget::mousePressEvent(QMouseEvent *ev)
 
 void RNGWidget::Synchronize(bool inbound)
 {
+	//Disable unused var: inbound
+	(void)inbound;
+
     RNG* rng = static_cast<RNG*>(ptr);
     QChar z = '0';
     setText(QString("%1\n%2").arg(rng->_w,8,16,z).arg(rng->_z,8,16,z));
@@ -401,7 +407,7 @@ void BindingsPanel::ConstructChildren()
         ConstructChildren();
         mclass = temp;
     }
-    if (widgets.size() != old_size && mclass->nqvars) {
+    if (widgets.size() != (unsigned)old_size && mclass->nqvars) {
         QFrame* line = new QFrame();
         line->setFrameShape(QFrame::HLine);
         line->setFrameShadow(QFrame::Sunken);

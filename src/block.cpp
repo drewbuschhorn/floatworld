@@ -65,6 +65,7 @@ void PushableBlock::Interact(Creat& c)
 
 void PushableBlock::WasPushed(Creat &c)
 {
+	(void)c;
 }
 
 RewardBlock::RewardBlock()

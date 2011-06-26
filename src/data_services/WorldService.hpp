@@ -13,6 +13,7 @@
 #include <pion/net/WebService.hpp>
 #include "../world.hpp"
 #include "../../gui/mainwindow.hpp"
+#include "boost/thread/mutex.hpp"
 
 namespace pion {		// begin namespace pion
 namespace plugins {		// begin namespace plugins
@@ -24,10 +25,13 @@ class WorldService :
 	public pion::net::WebService
 {
 public:
-	WorldService(void) {}
+	WorldService(void):_lockcount(0) {}
 	virtual ~WorldService() {}
 	virtual void operator()(pion::net::HTTPRequestPtr& request,
 							pion::net::TCPConnectionPtr& tcp_conn);
+
+	boost::mutex _actionLock;
+	int _lockcount;
 };
 
 }	// end namespace plugins

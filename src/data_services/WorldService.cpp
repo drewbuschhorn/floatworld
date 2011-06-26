@@ -13,6 +13,8 @@
 #include "../../gui/mainwindow.hpp"
 #include "WorldService.hpp"
 
+#include <boost/thread/mutex.hpp>
+
 using namespace pion;
 using namespace pion::net;
 
@@ -25,6 +27,9 @@ namespace plugins {		// begin namespace plugins
 /// handles requests for WorldService
 void WorldService::operator()(HTTPRequestPtr& request, TCPConnectionPtr& tcp_conn)
 {
+		boost::mutex::scoped_lock lock(this->_actionLock);
+		this->_lockcount++;
+
 		MainWindow* _mainwindow = MainWindow::Instance();
 		World* _world = World::Instance();
 
